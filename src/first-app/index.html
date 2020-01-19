@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="app.js"></script>
+
+<div id="app">
+    <input type="text" v-on:input="changeListener">
+    <h1>{{ hello() }}</h1>
+    <p>
+        {{ title.ad + " " + title.soyad + " " + array[3]}}
+        <br>
+        {{ testReturn() }}
+    </p>
+    <a v-bind:href="link">Google</a>
+    <p>
+        {{ finishedLink }}
+    </p>
+    <p v-html="finishedLink">
+    </p>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            title: {
+                ad: 'Hüseyin Cihad',
+                soyad: 'GÜLER'
+            },
+            link: 'http://google.com',
+            finishedLink: '<a href="http://google.com">Google</a>',
+            array: [1,2,3,4,5]
+        },
+        methods: {
+            changeListener: function(event){
+                this.title=event.target.value;
+            },
+            testReturn: function () {
+                this.title.ad='Reyyan';
+                return this.title;
+            },
+            hello: function () {
+                return "Hi!";
+            }
+        }
+    });
+</script>
+</body>
+</html>
