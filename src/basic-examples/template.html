@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+
+<div id="app">
+    <input type="text" v-on:input="changeListener">
+    <h1>{{ title }}</h1>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            title: "title"
+        },
+        methods: {
+            changeListener: function (event) {
+                this.title = event.target.value;
+            }
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+
+<div id="app">
+    <button v-on:click="increase(2, $event)">Click me increase 2</button>
+    <button v-on:click="counter++">Click me increase 1</button>
+    <p>
+        {{ counter }}
+    </p>
+    <p>
+        <span>Multiply 2 using inline js </span> {{ counter*2 }}
+    </p>
+    <p>
+        <span>interpolation js condition</span> {{ counter*2>10?"Greather than 10":"Lower Than 10" }}
+    </p>
+    <p>
+        {{ test }}
+    </p>
+
+    <p v-on:mousemove="updateCoordinates">
+        Coordinates : {{ x }} / {{ y }}
+        <br> <span v-on:mousemove="dummy">DEAD STOP</span>
+        <br> <span v-on:mousemove="">DOES NOT DEAD STOP</span>
+        <br> <span v-on:mousemove.>DEAD STOP USING VUE METHOTS</span>
+    </p>
+    <p>Alert Me</p><input type="input" v-on:keyup="alertMe">
+    <br>
+    <p>Enter and submit</p> <input type="input" v-on:keyup.enter="submitInput">
+    <br>
+    <p>Double Key Modifier</p> <input type="input" v-on:keyup.enter.space="enterSpace">
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            counter: 0,
+            x: 0,
+            y: 0,
+            test: "deneme"
+        },
+        methods: {
+            increase: function (step, event) {
+                this.counter += step;
+                this.test = event.clientX;
+            },
+            updateCoordinates: function (event) {
+                this.x = event.clientX;
+                this.y = event.clientY;
+            },
+            dummy: function (event) {
+                event.stopPropagation();
+            },
+            alertMe: function () {
+                alert("Herhangi birtuşa basıldı.")
+            },
+            submitInput: function (event) {
+                alert(event.target.value + " değeri girildi sonlandı.")
+            },
+            enterSpace: function (event) {
+                alert("enter veya space basıldı")
+            }
+        }
+    });
+</script>
+</body>
+</html>
