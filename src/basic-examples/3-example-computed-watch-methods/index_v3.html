@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+
+<div id="app">
+    <!--    Call methods and computed -->
+    <button v-on:click="counter++">Increase</button>
+    <button v-on:click="counter--">Decrase</button>
+    <!--    Call only result method-->
+    <button v-on:click="secondCounter++">Second Counter Increase</button>
+    <h1>{{ counter }} | {{ secondCounter }}</h1>
+    <h1>{{ result() }} | {{ output }}</h1>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            counter: 0,
+            secondCounter: 0
+        },
+        computed: {
+            output: function () {
+                console.log("Computed executed.");
+                return this.counter > 5 ? "Greather than 5" : "Smaller than 5";
+            }
+        },
+        watch: {
+            counter: function (value) {
+                var vm = this;
+                setTimeout(function () {
+                    vm.counter = 0;
+                }, 2000);
+            }
+        },
+        methods: {
+            result() {
+                console.log("Method executed.");
+                return this.counter > 5 ? "Greather than 5" : "Smaller than 5";
+            }
+        }
+    });
+</script>
+</body>
+</html>

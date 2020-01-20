@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+
+<div id="app">
+    <button v-on:click="increase">Increase</button>
+    <button v-on:click="decrease">Decrase</button>
+    <h1>{{ counter }}</h1>
+    <h1>{{ result }}</h1>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            counter: 0,
+            result: ''
+        },
+        methods: {
+            increase: function () {
+                this.counter++;
+                this.updateResult();
+            },
+            decrease: function () {
+                this.counter--;
+                this.updateResult();
+            },
+            updateResult: function () {
+                this.result = this.counter > 5 ? "Greather than 5" : "Smaller than 5";
+            }
+        }
+    });
+</script>
+</body>
+</html>

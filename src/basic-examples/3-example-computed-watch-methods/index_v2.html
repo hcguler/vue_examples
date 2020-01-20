@@ -7,19 +7,21 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
 
 <div id="app">
-    <input type="text" v-model="name">
-    <h1>{{ name }}</h1>
+    <button v-on:click="counter++">Increase</button>
+    <button v-on:click="counter--">Decrase</button>
+    <h1>{{ counter }}</h1>
+    <h1>{{ result() }}</h1>
 </div>
 
 <script>
     new Vue({
         el: '#app',
         data: {
-            name: "Hüseyin Cihad GÜLER"
+            counter: 0
         },
         methods: {
-            changeListener: function (event) {
-                this.name = event.target.value;
+            result () {
+                return this.counter > 5 ? "Greather than 5" : "Smaller than 5";
             }
         }
     });
