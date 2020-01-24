@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+
+<div id="app">
+    <input type="text" v-on:input="changeListener">
+    <h1>{{ title }}</h1>
+</div>
+<div id="app1">
+    <input type="text" v-on:input="changeListener">
+    <h1>{{ title }}</h1>
+</div>
+<div id="app2">
+    <input type="text" v-on:input="changeListener">
+    <h1>{{ title }}</h1>
+</div>
+
+<script>
+ var vm =   new Vue({
+        el: '#app',
+        data: {
+            title: "title"
+        },
+        methods: {
+            changeListener: function (event) {
+                this.title = event.target.value;
+            }
+        }
+    });
+ var vm1 =   new Vue({
+        data: {
+            title: "title1"
+        },
+        methods: {
+            changeListener: function (event) {
+                this.title = event.target.value;
+            }
+        }
+    });
+ vm1.$mount('#app1');
+
+ var vm2 = new Vue({
+     template: '<h1>Hello!</h1>'
+ })
+
+ vm2.$mount('#app2');
+</script>
+</body>
+</html>
