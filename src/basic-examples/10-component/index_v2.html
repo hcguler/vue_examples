@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+
+<div id="app">
+
+    <my-cmp></my-cmp>
+    <hr>
+    <my-cmp></my-cmp>
+</div>
+
+<script>
+    var data = {
+        status: 'Critical External'
+    }
+    Vue.component('my-cmp', {
+        data: function () {
+            return data;
+        },
+        methods: {
+            changeStatus: function () {
+                this.status = 'Normal';
+            }
+        },
+        template: '<p>Server Status: {{ status }} (<button @click="changeStatus">Change</button>)</p>'
+    })
+    new Vue({
+        el: '#app'
+    });
+</script>
+</body>
+</html>
